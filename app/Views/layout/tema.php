@@ -267,12 +267,12 @@
                     <p>Data Laporan Perdin</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="<?= site_url('perjalanan_dinas') ?>" class="nav-link">
                     <i class="nav-icon fas fa-tasks"></i>
                     <p>Perjalanan dinas</p>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </li>
             <li class="nav-item">

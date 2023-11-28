@@ -15,8 +15,9 @@
                         <table id="table1" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>ID Laporan</th>
-                                    <th>ID Perjalanan</th>
+                                    <th>Nama pelaksana</th>
+                                    <th>Provinsi</th>
+                                    <th>Kota</th>
                                     <th>SP</th>
                                     <th>SPPD</th>
                                     <th>LP</th>
@@ -28,16 +29,20 @@
                             <tbody>
                                 <?php foreach ($laporans as $laporan) : ?>
                                     <tr>
-                                        <td><?= $laporan['id'] ?></td>
-                                        <td><?= $laporan['perdin_id'] ?></td>
-                                        <td><?= $laporan['sp'] ?></td>
-                                        <td><?= $laporan['sppd'] ?></td>
-                                        <td><?= $laporan['lp'] ?></td>
-                                        <td><?= $laporan['kwitansi'] ?></td>
-                                        <td><?= $laporan['status'] ?></td>
+                                        <td><?= $laporan["nama_pelaksana"] ?></td>
+                                        <td><?= $laporan["provinsi"] ?></td>
+                                        <td><?= $laporan["kota"] ?></td>
+                                        <td><a href="<?= $laporan['sp'] ?>" class="btn btn-primary">View <i class="fa fa-eye"></i></a></td>
+                                        <td><a href="<?= $laporan['sppd'] ?>" class="btn btn-primary">View <i class="fa fa-eye"></i></a></td>
+                                        <td><a href="<?= $laporan['lp'] ?>" class="btn btn-primary">View <i class="fa fa-eye"></i></a></td>
+                                        <td><a href="<?= $laporan['kwitansi'] ?>" class="btn btn-primary">View <i class="fa fa-eye"></i></a></td>
+                                        <td><?= ($laporan['status'] == 1) ? "Draft" : (($laporan['status'] == 2) ? "Terima" : "Tolak") ?></td>
                                         <td>
-                                            <a href="<?= site_url('laporan_perjalanan_dinas/edit/' . $laporan['id']) ?>">Edit</a>
-                                            <a href="<?= site_url('laporan_perjalanan_dinas/delete/' . $laporan['id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                                            <?php if ($laporan['status'] != 2) : ?>
+                                                <a href="<?= site_url('laporan/konfirmasi/' . $laporan['id']) ?>" class="btn btn-warning">Konfirmasi <i class="fa fa-edit"></i></a>
+                                            <?php else : ?>
+                                                <small>Telah di setujui</small>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

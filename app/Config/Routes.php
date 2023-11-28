@@ -46,6 +46,8 @@ $routes->get('/laporan/create', 'LaporanPerjalananDinasController::create');
 $routes->post('/laporan/create', 'LaporanPerjalananDinasController::create');
 $routes->get('/laporan/edit/(:num)', 'LaporanPerjalananDinasController::edit/$1');
 $routes->post('/laporan/edit/(:num)', 'LaporanPerjalananDinasController::edit/$1');
+$routes->get('/laporan/konfirmasi/(:num)', 'LaporanPerjalananDinasController::konfirmasi/$1');
+$routes->post('/laporan/konfirmasi/(:num)', 'LaporanPerjalananDinasController::konfirmasi/$1');
 $routes->get('/laporan/delete/(:num)', 'LaporanPerjalananDinasController::delete/$1');
 
 //Perjalanan Dinas
@@ -55,6 +57,8 @@ $routes->group('perjalanan_dinas', ['namespace' => 'App\Controllers'], function 
     $routes->post('create', 'PerjalananDinasController::create');
     $routes->get('edit/(:num)', 'PerjalananDinasController::edit/$1');
     $routes->post('edit/(:num)', 'PerjalananDinasController::edit/$1');
+    $routes->get('konfirmasi/(:num)', 'PerjalananDinasController::konfirmasi/$1');
+    $routes->post('konfirmasi/(:num)', 'PerjalananDinasController::konfirmasi/$1');
     $routes->get('delete/(:num)', 'PerjalananDinasController::delete/$1');
 });
 
@@ -74,4 +78,9 @@ $routes->group('pengiriman_uang', ['namespace' => 'App\Controllers'], function (
     $routes->get('create', 'PengirimanUangController::create');
     $routes->post('create', 'PengirimanUangController::create');
     // Tambahkan rute lainnya seperti edit, delete, dll.
+});
+
+//Kas
+$routes->group('kas', ['namespace' => 'App\Controllers'], function ($routes) {
+    $routes->get('/', 'KasController::index');
 });

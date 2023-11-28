@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\LaporanPerjalananDinasModel;
+use App\Models\KasModel;
 use CodeIgniter\Controller;
 
 class LaporanPerjalananDinasController extends Controller
@@ -10,7 +11,7 @@ class LaporanPerjalananDinasController extends Controller
     public function index()
     {
         $laporanModel = new LaporanPerjalananDinasModel();
-        $data['laporans'] = $laporanModel->findAll(); // Mendapatkan semua data laporan
+        $data['laporans'] = $laporanModel->ambilSemuaJoinPerdinBbmPelaksana(); // Mendapatkan semua data laporan
 
         return view('laporan/index', $data); // Menampilkan view index dengan data laporan
     }
@@ -87,6 +88,43 @@ class LaporanPerjalananDinasController extends Controller
         }
 
         return view('laporan/edit', $data);
+    }
+
+    public function konfirmasi($id)
+    {
+        // load instance object of model
+        $laporanPerjalananDinasModel = new LaporanPerjalananDinasModel();
+        $kasModel = new KasModel();
+
+        $data['laporan_perjalanan_dinas'] = $laporanPerjalananDinasModel->ambilSemuaJoinPerdinBbmPelaksanaDetail($id);
+
+        // cek if method post
+        if ($this->request->getMethod() === 'post') {
+
+            $formData1 = [
+                "status" => $this->request->getPost('status')
+            ];
+
+            $laporanPerjalananDinasModel->update($id, $formData1);
+
+            if ($this->request->getPost('status') == 2) {
+
+                $formData = [
+
+                    'perdin_id'         => $this->request->getPost('perdin_id'),
+                    'keterangan'        => $this->request->getPost('keterangan'),
+                    'debet'             => $this->request->getPost('debet'),
+                    'bagian_dprd_id'    => $this->request->getPost('bagian_dprd_id'),
+
+                ];
+
+                $kasModel->insert($formData);
+            }
+
+            return redirect()->to('/laporan');
+        }
+
+        return view('laporan/konfirmasi', $data);
     }
 
     public function delete($id)

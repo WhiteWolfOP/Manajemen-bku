@@ -14,6 +14,31 @@ class LaporanPerjalananDinasModel extends Model
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
 
+    public function ambilSemuaJoinPerdinBbmPelaksana()
+    {
+
+        return $this->db->table($this->table)
+            ->select('laporan_perjalanan_dinas.*, nama_pelaksana.nama_pelaksana, bbm.provinsi, bbm.kota')
+            ->join('perjalanan_dinas', 'laporan_perjalanan_dinas.perdin_id = perjalanan_dinas.id')
+            ->join('nama_pelaksana', 'perjalanan_dinas.pelaksana_id = nama_pelaksana.id')
+            ->join('bbm', 'perjalanan_dinas.bbm_id = bbm.id')
+            ->get()
+            ->getResultArray();
+    }
+
+    public function ambilSemuaJoinPerdinBbmPelaksanaDetail($id)
+    {
+
+        return $this->db->table($this->table)
+            ->select('laporan_perjalanan_dinas.*, nama_pelaksana.nama_pelaksana, bbm.provinsi, bbm.kota, perjalanan_dinas.biaya, perjalanan_dinas.anggota, perjalanan_dinas.bagian_dprd_id')
+            ->join('perjalanan_dinas', 'laporan_perjalanan_dinas.perdin_id = perjalanan_dinas.id')
+            ->join('nama_pelaksana', 'perjalanan_dinas.pelaksana_id = nama_pelaksana.id')
+            ->join('bbm', 'perjalanan_dinas.bbm_id = bbm.id')
+            ->where("laporan_perjalanan_dinas.id", $id)
+            ->get()
+            ->getRowArray();
+    }
+
     public function getLaporans()
     {
         return $this->findAll();

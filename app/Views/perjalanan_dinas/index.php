@@ -29,6 +29,10 @@
                     <td><?= $perjalananDinas['provinsi'] ?></td>
                     <td><?= $perjalananDinas['kota'] ?></td>
                     <td><?= 'Rp.' . number_format($perjalananDinas['biaya'], 0, ',', '.') ?></td>
+                    <td>
+                      <a href="" class="btn btn-primary">Upload Laporan <i class="fa fa-edit"></i></a>
+                      <!-- <a href="<?= site_url('/perjalanan_dinas/konfirmasi/' . $perjalananDinas["id"]) ?>" class="btn btn-info">Konfirmasi <i class="fa fa-edit"></i></a> -->
+                    </td>
                     <!-- Tambahkan data lainnya sesuai kebutuhan -->
                   </tr>
                 </tbody>
