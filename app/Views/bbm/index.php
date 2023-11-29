@@ -21,7 +21,7 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
+              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="<?= site_url('logout') ?>">Logout</a>
             </li>
             <li class="mt-2">
               <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
@@ -116,7 +116,7 @@
             <li class="nav-item d-flex align-items-center">
               <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
+                <span class="d-sm-inline d-none"><?= user()->username ?></span>
               </a>
             </li>
           </ul>
@@ -129,12 +129,48 @@
         <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-        <h6 class="text-white text-capitalize ps-3">Data BBM</h6>
+        <h6 class="text-white text-capitalize ps-3">Data Harga BBM Perjalanan Dinas</h6>
         </div>
     </div>
     <div class="card-body px-0 pb-2">
     <div class="table-responsive p-0">
-    &nbsp;&nbsp;&nbsp;<a class="badge badge-sm bg-gradient-success" href="<?= site_url('bbm/create') ?>">Tambah Data</a>
+    <div class="col-md-4">
+    &nbsp;&nbsp;&nbsp;<button type="button" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#modal-form">Tambah Data</button>
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left">
+                <h5 class="">Tambah Data Harga BBM dan Kota</h5>
+              </div>
+              <div class="card-body">
+              <form role="form text-left" action="<?= site_url('bbm/create') ?>" method="post">
+                  <div class="mb-3">
+                    <label for="provinsi" class="form-label">Provinsi:</label>
+                    <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Masukkan Provinsi" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="kota" class="form-label">Kota:</label>
+                      <input type="text" class="form-control" name="kota" id="kota" placeholder="Masukkan Kota" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="harga_bbm" class="form-label">Harga BBM:</label>
+                  <div class="input-group">
+                  <span class="input-group-text">Rp</span>
+                  <input type="text" class="form-control" name="harga_bbm" id="harga_bbm" placeholder="Harga BBM" required>
+                  </div>
+                  </div>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <table id="table1" class="table align-items-center mb-0">
         <thead>
             <tr>
@@ -168,3 +204,23 @@
     </div>
         </div>
 <?= $this->endSection() ?>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.querySelector("#navbar input");
+        const tableRows = document.querySelectorAll("#table1 tbody tr");
+
+        searchInput.addEventListener("keyup", function (event) {
+            const searchQuery = event.target.value.toLowerCase();
+
+            tableRows.forEach((row) => {
+                const rowData = row.textContent.toLowerCase();
+                if (rowData.includes(searchQuery)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+

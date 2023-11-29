@@ -11,7 +11,7 @@
             <div class="card z-index-0 fadeIn3 fadeInBottom">
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
+                  <h4 class="text-white font-weight-bolder text-center mt-2 mb-0"><?=lang('Auth.loginTitle')?></h4>
                   <div class="row mt-3">
                     <div class="col-2 text-center ms-auto">
                       <a class="btn btn-link px-3" href="javascript:;">
@@ -32,26 +32,68 @@
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
-                  <div class="input-group input-group-outline my-3">
+
+              <?= view('Myth\Auth\Views\_message_block') ?>
+              
+                  <form action="<?= url_to('login') ?>" method="post" class="user">
+						        <?= csrf_field() ?>
+
+                    
+                  <!-- <div class="input-group input-group-outline my-3">
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control">
+                  </div> -->
+<?php if ($config->validFields === ['email']): ?>
+                  <div class="input-group input-group-outline my-3">
+                    <label for="login"><?=lang('Auth.email')?></label>
+                    <input type="email" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>"
+                        name="login" placeholder="<?=lang('Auth.email')?>">
+                    <div class="invalid-feedback">
+                      <?= session('errors.login') ?>
+                    </div>
                   </div>
+<?php else: ?>
+                  <div class="input-group input-group-outline my-3">
+                    <label for="login"></label>
+                    <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>"
+                        name="login" placeholder="<?=lang('Auth.emailOrUsername')?>">
+                    <div class="invalid-feedback">
+                      <?= session('errors.login') ?>
+                    </div>
+                  </div>
+<?php endif; ?>
                   <div class="input-group input-group-outline mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control">
+                      <label for="password"></label>
+                      <input type="password" name="password" class="form-control  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>">
+                      <div class="invalid-feedback">
+                        <?= session('errors.password') ?>
+                      </div>
                   </div>
-                  <div class="form-check form-switch d-flex align-items-center mb-3">
+                  <!-- <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" type="checkbox" id="rememberMe" checked>
                     <label class="form-check-label mb-0 ms-3" for="rememberMe">Remember me</label>
+                  </div> -->
+      <?php if ($config->allowRemembering): ?>
+                  <div class="form-check form-switch d-flex align-items-center mb-3">
+                    <label class="form-check-label mb-0 ms-3">
+                      <input class="form-check-input" type="checkbox" name="remember" class="form-check-input" <?php if (old('remember')) : ?> checked <?php endif ?>>
+                      <?=lang('Auth.rememberMe')?>
+                    </label>
                   </div>
+      <?php endif; ?>
                   <div class="text-center">
                   <button type="submit" class="btn btn-primary btn-block"><?=lang('Auth.loginAction')?></button>
                   </div>
-                  <p class="mt-4 text-sm text-center">
+                  <!-- <p class="mt-4 text-sm text-center">
                     Don't have an account?
                     <a href="../pages/sign-up.html" class="text-primary text-gradient font-weight-bold">Sign up</a>
-                  </p>
+                  </p> -->
+        <?php if ($config->allowRegistration) : ?>
+                  <p class="mt-4 text-sm text-center"><a href="<?= url_to('register') ?>"><?=lang('Auth.needAnAccount')?></a></p>
+        <?php endif; ?>
+        <?php if ($config->activeResetter): ?>
+                  <p class="mt-4 text-sm text-center"><a href="<?= url_to('forgot') ?>"><?=lang('Auth.forgotYourPassword')?></a></p>
+        <?php endif; ?>
                 </form>
               </div>
             </div>

@@ -20,7 +20,7 @@
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-material-dashboard">Online Builder</a>
+              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="<?= site_url('logout') ?>">Logout</a>
             </li>
             <li class="mt-2">
               <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
@@ -115,7 +115,7 @@
             <li class="nav-item d-flex align-items-center">
               <a href="../pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
+                <span class="d-sm-inline d-none"><?= user()->username ?></span>
               </a>
             </li>
           </ul>
@@ -133,7 +133,46 @@
     </div>
     <div class="card-body px-0 pb-2">
     <div class="table-responsive p-0">
-    &nbsp;&nbsp;&nbsp;<a class="badge badge-sm bg-gradient-success" href="<?= site_url('/pengiriman_uang/create') ?>">Tambah Data</a>
+    <div class="col-md-4">
+    &nbsp;&nbsp;&nbsp;<button type="button" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#modal-form">Tambah Data</button>
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left">
+                <h5 class="">Pengeluaran Anggaran</h5>
+              </div>
+              <div class="card-body">
+              <form role="form text-left" action="<?= site_url('/pengiriman_uang/create') ?>" method="post">
+                  <!-- <div class="mb-3">
+                    <label for="bagian_dprd_id">Pilih Bagian:</label>
+                    <select name="bagian_dprd_id" required>
+                        
+                    </select><br>
+                  </div> -->
+                  <div class="mb-3">
+                    <label for="jumlah_uang">Jumlah Uang:</label>
+                    <input type="text" name="jumlah_uang"><br>
+                  </div>
+                  <div class="mb-3">
+                    <label for="tanggal_pengiriman">Tanggal Pengiriman:</label>
+                    <input type="date" name="tanggal_pengiriman"><br>
+                  </div>
+                  <div class="mb-3">
+                    <label for="keterangan">Keterangan:</label>
+                    <textarea name="keterangan"></textarea><br>
+                  </div>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <table id="table1" class="table align-items-center mb-0">
         <thead>
             <tr>
