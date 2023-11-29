@@ -28,4 +28,16 @@ class PerjalananDinasModel extends Model
             ->get()
             ->getResultArray();
     }
+
+    public function getDetailPerjalananDinasData($id)
+    {
+
+        return $this->db->table($this->table)
+            ->select('perjalanan_dinas.*, nama_pelaksana.nama_pelaksana, bbm.provinsi, bbm.kota')
+            ->join('nama_pelaksana', 'nama_pelaksana.id = perjalanan_dinas.pelaksana_id')
+            ->join('bbm', 'bbm.id = perjalanan_dinas.bbm_id')
+            ->where('perjalanan_dinas.id', $id)
+            ->get()
+            ->getRowArray();
+    }
 }

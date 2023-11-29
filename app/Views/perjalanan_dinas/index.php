@@ -147,18 +147,15 @@
             <?php foreach ($perjalanan as $perjalananDinas) : ?>
             <tbody>
                   <tr>
-                    <td class="align-middle text-center text-sm">
-                        <?= $perjalananDinas['nama_pelaksana'] ?>
+                    <td><?= $perjalananDinas['nama_pelaksana'] ?></td>
+                    <td><?= $perjalananDinas['provinsi'] ?></td>
+                    <td><?= $perjalananDinas['kota'] ?></td>
+                    <td><?= 'Rp.' . number_format($perjalananDinas['biaya'], 0, ',', '.') ?></td>
+                    <td>
+                      <a href="" class="btn btn-primary">Upload Laporan <i class="fa fa-edit"></i></a>
+                      <!-- <a href="<?= site_url('/perjalanan_dinas/konfirmasi/' . $perjalananDinas["id"]) ?>" class="btn btn-info">Konfirmasi <i class="fa fa-edit"></i></a> -->
                     </td>
-                    <td class="align-middle text-center text-sm">
-                        <?= $perjalananDinas['provinsi'] ?>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                        <?= $perjalananDinas['kota'] ?>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                        <?= 'Rp.' . number_format($perjalananDinas['biaya'], 0, ',', '.') ?>
-                    </td>
+                    <!-- Tambahkan data lainnya sesuai kebutuhan -->
                   </tr>
             </tbody>
     <?php endforeach; ?>

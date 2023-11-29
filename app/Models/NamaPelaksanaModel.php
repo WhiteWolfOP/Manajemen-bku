@@ -29,7 +29,12 @@ class NamaPelaksanaModel extends Model
     // Menambah data nama pelaksana baru
     public function insertNamaPelaksana($data)
     {
-        return $this->insert($data);
+        return $this->db->table($this->table)
+            ->select('perjalanan_dinas.*, nama_pelaksana.nama_pelaksana, bbm.provinsi, bbm.kota')
+            ->join('nama_pelaksana', 'nama_pelaksana.id = perjalanan_dinas.pelaksana_id')
+            ->join('bbm', 'bbm.id = perjalanan_dinas.bbm_id')
+            ->get()
+            ->getResultArray();
     }
 
     // Mendapatkan detail data nama pelaksana berdasarkan ID
