@@ -61,7 +61,7 @@
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
           <a class="nav-link text-white " href="<?= site_url('role') ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">admin_panel_settings</i>
@@ -76,7 +76,8 @@
             </div>
             <span class="nav-link-text ms-1">User</span>
           </a>
-        </li>
+        </li> -->
+        <?php if (in_groups('admin')) : ?>
       <li class="nav-item">
           <a class="nav-link text-white " href="<?= site_url('bagian_dprd') ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -102,7 +103,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white " href="<?= site_url('laporan') ?>">
+          <a class="nav-link text-white " href="<?= site_url('kas') ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">menu_book</i>
             </div>
@@ -117,6 +118,8 @@
             <span class="nav-link-text ms-1">Pelaksana Perdin</span>
           </a>
         </li>
+        <?php endif; ?>
+        
         <li class="nav-item">
           <a class="nav-link text-white " href="<?= site_url('perjalanan_dinas') ?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -303,6 +306,26 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  <script type="text/javascript">
+        window.onload = function() { jam(); }
+       
+        function jam() {
+            var e = document.getElementById('jam'),
+            d = new Date(), h, m, s;
+            h = d.getHours();
+            m = set(d.getMinutes());
+            s = set(d.getSeconds());
+       
+            e.innerHTML = h +':'+ m +':'+ s;
+       
+            setTimeout('jam()', 1000);
+        }
+       
+        function set(e) {
+            e = e < 10 ? '0'+ e : e;
+            return e;
+        }
+    </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

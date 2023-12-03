@@ -24,6 +24,11 @@ class BagianDPRDModel extends Model
         return $this->findAll();
     }
 
+    public function getNamaBagian()
+    {
+        return $this->select('nama_bagian')->findAll();
+    }
+
     public function getBagianDPRDByID($id)
     {
         return $this->find($id);

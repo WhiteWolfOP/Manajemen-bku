@@ -10,6 +10,7 @@ class NamaPelaksanaModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'user_id',
+        'bagian_dprd_id',
         'nama_pelaksana',
         'nik_nip',
         'jabatan',

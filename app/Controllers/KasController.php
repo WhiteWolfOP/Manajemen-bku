@@ -6,14 +6,14 @@ use App\Models\BbmModel;
 use App\Models\KasModel;
 use CodeIgniter\Controller;
 
-class BbmController extends Controller
+class KasController extends Controller
 {
     public function index()
     {
         $kasModel = new KasModel();
-        $kasData = $kasModel->getAllBbm();
+        $kasData = $kasModel->getAllKas();
 
-        return view('bbm/index', ['kasData' => $kasData]);
+        return view('kas/index', ['kasData' => $kasData]);
     }
 
     public function create()

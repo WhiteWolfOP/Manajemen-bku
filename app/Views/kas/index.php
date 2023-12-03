@@ -1,15 +1,16 @@
+<!-- Views untuk menampilkan data kas -->
 <?= $this->extend('layout/template') ?>
 
 <?= $this->section('content') ?>
 <section class="content">
 <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
-      <div class="container-fluid py-1 px-3">
+   <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Laporan</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Perdin</h6>
+          <h6 class="font-weight-bolder mb-0">KAS</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -23,7 +24,7 @@
               <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="<?= site_url('logout') ?>">Logout</a>
             </li>
             <li class="mt-2">
-              <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+            <span id="jamServer"><?php echo date("H:i:s");?></span>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -128,54 +129,86 @@
         <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-        <h6 class="text-white text-capitalize ps-3">Data Laporan Perjalanan Dinas</h6>
+        <h6 class="text-white text-capitalize ps-3">Data Laporan KAS</h6>
         </div>
     </div>
     <div class="card-body px-0 pb-2">
     <div class="table-responsive p-0">
-    &nbsp;&nbsp;&nbsp;<a class="badge badge-sm bg-gradient-success" href="<?= site_url('laporan/create') ?>">Tambah Data</a>
+    <div class="col-md-4">
+    &nbsp;&nbsp;&nbsp;<button type="button" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#modal-form">Tambah Data</button>
+    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card card-plain">
+              <div class="card-header pb-0 text-left">
+                <h5 class="">Tambah Data Harga BBM dan Kota</h5>
+              </div>
+              <div class="card-body">
+              <form role="form text-left" action="<?= site_url('bbm/create') ?>" method="post">
+                  <div class="mb-3">
+                    <label for="provinsi" class="form-label">Provinsi:</label>
+                    <input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="Masukkan Provinsi" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="kota" class="form-label">Kota:</label>
+                      <input type="text" class="form-control" name="kota" id="kota" placeholder="Masukkan Kota" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="harga_bbm" class="form-label">Harga BBM:</label>
+                  <div class="input-group">
+                  <span class="input-group-text">Rp</span>
+                  <input type="text" class="form-control" name="harga_bbm" id="harga_bbm" placeholder="Harga BBM" required>
+                  </div>
+                  </div>
+                      <button type="submit" class="btn btn-primary">Simpan</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <table id="table1" class="table align-items-center mb-0">
         <thead>
             <tr>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Laporan</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Perjalanan</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SP</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">SPPD</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">LP</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kwitansi</th>
-                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Aksi</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Perdin ID</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Bagian</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">keterangan</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Debet</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kredit</th>
+                <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Aksi</th> -->
             </tr>
         </thead>
-        <?php foreach ($laporans as $laporan) : ?>
+            <?php foreach ($kasData as $kas) : ?>
             <tbody>
                   <tr>
                     <td class="align-middle text-center text-sm">
-                        <?= $laporan['id'] ?>
+                        <?= $kas['id'] ?>
                     </td>
                     <td class="align-middle text-center text-sm">
-                        <?= $laporan['perdin_id'] ?>
+                        <?= $kas['perdin_id'] ?>
                     </td>
                     <td class="align-middle text-center text-sm">
-                        <?= $laporan['sp'] ?>
+                        <?= $kas['bagian_dprd_id'] ?>
                     </td>
                     <td class="align-middle text-center text-sm">
-                        <?= $laporan['sppd'] ?>
+                        <?= $kas['keterangan'] ?>
                     </td>
                     <td class="align-middle text-center text-sm">
-                        <?= $laporan['lp'] ?>
+                        <?= 'Rp.' . number_format($kas['debet'], 0, ',', '.') ?>
                     </td>
                     <td class="align-middle text-center text-sm">
-                        <?= $laporan['kwitansi'] ?>
+                        <?= 'Rp.' . number_format($kas['kredit'], 0, ',', '.') ?>
                     </td>
-                    <td class="align-middle text-center text-sm">
-                        <?= $laporan['status'] ?>
-                    </td>
-                    <td>
-                        <a class="text-xs font-weight-bold mb-0" href="<?= site_url('laporan_perjalanan_dinas/edit/' . $laporan['id']) ?>">Edit</a>
+                    <!-- <td>
+                        <a class="text-xs font-weight-bold mb-0" href="<?= site_url('bbm/edit/' . $kas['id']) ?>">Edit</a>
                         </br>
-                        <a class="text-xs text-secondary mb-0" href="<?= site_url('laporan_perjalanan_dinas/delete/' . $laporan['id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
-                    </td>
+                        <a class="text-xs text-secondary mb-0" href="<?= site_url('bbm/delete/' . $kas['id']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                    </td> -->
                   </tr>
             </tbody>
     <?php endforeach; ?>
@@ -183,3 +216,4 @@
     </div>
         </div>
 <?= $this->endSection() ?>
+

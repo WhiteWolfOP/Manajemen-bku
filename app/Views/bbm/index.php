@@ -24,7 +24,7 @@
               <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="<?= site_url('logout') ?>">Logout</a>
             </li>
             <li class="mt-2">
-              <a class="github-button" href="https://github.com/creativetimofficial/material-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/material-dashboard on GitHub">Star</a>
+            <span id="jamServer"><?php echo date("H:i:s");?></span>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -204,23 +204,4 @@
     </div>
         </div>
 <?= $this->endSection() ?>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const searchInput = document.querySelector("#navbar input");
-        const tableRows = document.querySelectorAll("#table1 tbody tr");
-
-        searchInput.addEventListener("keyup", function (event) {
-            const searchQuery = event.target.value.toLowerCase();
-
-            tableRows.forEach((row) => {
-                const rowData = row.textContent.toLowerCase();
-                if (rowData.includes(searchQuery)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
-        });
-    });
-</script>
 

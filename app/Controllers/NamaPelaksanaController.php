@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\NamaPelaksanaModel;
+use App\Models\BagianDPRDModel;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
 
@@ -18,8 +19,11 @@ class NamaPelaksanaController extends Controller
 
     public function create()
     {
+        $bagianDprdModel = new BagianDprdModel();
+        $bagianDprd = $bagianDprdModel->getBagianDPRD();
         $userModel = new UserModel();
         $usersWithUserRole = $userModel->getUsersWithUserRole();
+        // dd($usersWithUserRole);
 
         if ($this->request->getMethod() === 'post') {
             $namaPelaksanaModel = new NamaPelaksanaModel();
@@ -27,6 +31,7 @@ class NamaPelaksanaController extends Controller
             // Ambil data dari form
             $formData = [
                 'user_id' => $this->request->getPost('user_id'),
+                'bagian_dprd_id' => $this->request->getPost('bagian_dprd_id'),
                 'nama_pelaksana' => $this->request->getPost('nama_pelaksana'),
                 'nik_nip' => $this->request->getPost('nik_nip'),
                 'jabatan' => $this->request->getPost('jabatan'),
@@ -65,7 +70,7 @@ class NamaPelaksanaController extends Controller
     public function delete($id)
     {
         $namaPelaksanaModel = new NamaPelaksanaModel();
-        $namaPelaksanaModel->delete($id);
+        $namaPelaksanaModel->deleteNamaPelaksana($id);
 
         return redirect()->to('/nama_pelaksana');
     }

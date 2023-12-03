@@ -133,46 +133,7 @@
     </div>
     <div class="card-body px-0 pb-2">
     <div class="table-responsive p-0">
-    <div class="col-md-4">
-    &nbsp;&nbsp;&nbsp;<button type="button" class="badge badge-sm bg-gradient-success" data-bs-toggle="modal" data-bs-target="#modal-form">Tambah Data</button>
-    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-body p-0">
-            <div class="card card-plain">
-              <div class="card-header pb-0 text-left">
-                <h5 class="">Pengeluaran Anggaran</h5>
-              </div>
-              <div class="card-body">
-              <form role="form text-left" action="<?= site_url('/pengiriman_uang/create') ?>" method="post">
-                  <!-- <div class="mb-3">
-                    <label for="bagian_dprd_id">Pilih Bagian:</label>
-                    <select name="bagian_dprd_id" required>
-                        
-                    </select><br>
-                  </div> -->
-                  <div class="mb-3">
-                    <label for="jumlah_uang">Jumlah Uang:</label>
-                    <input type="text" name="jumlah_uang"><br>
-                  </div>
-                  <div class="mb-3">
-                    <label for="tanggal_pengiriman">Tanggal Pengiriman:</label>
-                    <input type="date" name="tanggal_pengiriman"><br>
-                  </div>
-                  <div class="mb-3">
-                    <label for="keterangan">Keterangan:</label>
-                    <textarea name="keterangan"></textarea><br>
-                  </div>
-                      <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    &nbsp;&nbsp;&nbsp;<a class="badge badge-sm bg-gradient-success" href="<?= site_url('pengiriman_uang/create') ?>">Tambah Data</a>
     <table id="table1" class="table align-items-center mb-0">
         <thead>
             <tr>
@@ -211,7 +172,7 @@
                     </td>
                   </tr>
             </tbody>
-    <?php endforeach; ?>
+          <?php endforeach; ?>
 </table>
     </div>
         </div>

@@ -10,10 +10,10 @@ class KasModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['perdin_id', 'keterangan', 'debet', 'kredit', 'bagian_dprd_id'];
 
-    // Menampilkan semua data bbm
+    // Menampilkan semua data kas
     public function getAllKas()
     {
-        $db      = \Config\Database::connect();
+        return $this->findAll();
     }
 
     // // Menambah data bbm baru

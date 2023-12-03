@@ -8,7 +8,7 @@ class UserModel extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['role_id', 'nama_user', 'username', 'password'];
+    protected $allowedFields = ['username', 'password', 'email'];
 
     public function getUsers()
     {
@@ -30,19 +30,12 @@ class UserModel extends Model
         return $this->delete($id);
     }
     
-    public function getUsersWithRole()
-    {
-        return $this->db->table('users')
-            ->select('users.*, role.nama_role') // Pilih kolom yang diinginkan
-            ->join('role', 'role.id = users.role_id') // Lakukan join antara tabel users dan role
-            ->get()
-            ->getResultArray();
-    }
     public function getUsersWithUserRole()
     {
-        return $this->select('users.id, users.nama_user')
-                    ->join('role', 'role.id = users.role_id')
-                    ->where('role.nama_role', 'user')
+        return $this->select('users.id, users.username')
+                    ->join('auth_groups_users', 'users.id = auth_groups_users.user_id')
+                    ->join('auth_groups', 'auth_groups_users.group_id = auth_groups.id')
+                    ->where('auth_groups.name', 'user')
                     ->findAll();
     }
 

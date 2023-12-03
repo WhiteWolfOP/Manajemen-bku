@@ -10,6 +10,8 @@ class PengirimanUangController extends BaseController
     public function index()
     {
         $pengirimanUangModel = new PengirimanUangModel();
+        $bagianDprdModel = new BagianDprdModel();
+        $bagianDprd = $bagianDprdModel->getNamaBagian();
         $data['pengiriman_uang'] = $pengirimanUangModel->findAll();
 
         return view('pengiriman_uang/index', $data);
