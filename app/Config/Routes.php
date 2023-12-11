@@ -42,7 +42,7 @@ $routes->post('/nama_pelaksana/delete/(:num)', 'NamaPelaksanaController::delete/
 
 //Laporan Perdin
 $routes->get('/laporan', 'LaporanPerjalananDinasController::index');
-$routes->get('/laporan/create', 'LaporanPerjalananDinasController::create');
+$routes->get('/laporan/create/(:num)', 'LaporanPerjalananDinasController::create/$1');
 $routes->post('/laporan/create', 'LaporanPerjalananDinasController::create');
 $routes->get('/laporan/edit/(:num)', 'LaporanPerjalananDinasController::edit/$1');
 $routes->post('/laporan/edit/(:num)', 'LaporanPerjalananDinasController::edit/$1');

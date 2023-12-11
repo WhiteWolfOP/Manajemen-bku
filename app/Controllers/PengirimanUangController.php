@@ -48,6 +48,7 @@ class PengirimanUangController extends BaseController
     {
         $pengirimanUangModel = new PengirimanUangModel();
         $data['pengiriman_uang'] = $pengirimanUangModel->find($id);
+        $pengirimanUang = $pengirimanUangModel->find($id);
 
         if ($this->request->getMethod() === 'post') {
             $data = [

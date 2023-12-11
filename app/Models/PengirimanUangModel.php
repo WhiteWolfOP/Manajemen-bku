@@ -37,4 +37,9 @@ class PengirimanUangModel extends Model
         $this->insert($data);
         return 1;
     }
+
+    public function getPengirimanUangById($id)
+    {
+        return $this->find($id);
+    }
 }

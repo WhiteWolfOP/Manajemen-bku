@@ -10,10 +10,11 @@ class PerjalananDinasModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = [
         'pelaksana_id',
+        'bagian_dprd_id',
         'bbm_id',
         'status',
         'biaya',
-        'bukti_transfer',
+        'anggota',
         'user_input',
         'user_edit'
         // Kolom lain yang diperlukan

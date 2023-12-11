@@ -12,16 +12,16 @@
                     </div>
                     <div class="card-body px-4 py-2">
                         <a class="btn btn-sm bg-gradient-success mb-3" href="<?= site_url('pengiriman_uang') ?>">Kembali</a>
-                        <form action="<?= site_url('pengiriman_uang/edit/' . $pengiriman['id']) ?>" method="post">
+                        <form action="<?= site_url('pengiriman_uang/edit/' . $pengirimanUang['id']) ?>" method="post">
                             <div class="mb-3">
                                 <label for="pengiriman_uang" class="form-label">Anggaran:</label>
-                                <input type="text" class="form-control" name="pengiriman_uang" id="pengiriman_uang" value="<?= $pengiriman['pengiriman_uang'] ?>">
+                                <input type="text" class="form-control" name="pengiriman_uang" id="pengiriman_uang" value="<?= $pengirimanUang['pengiriman_uang'] ?>">
                             </div>
                             <div class="mb-3">
                             <label for="bagian_dprd_id">Pilih Bagian:</label>
                                 <select name="bagian_dprd_id" required>
                                     <?php foreach ($bagianDprd as $bagian): ?>
-                                        <option value="<?= $bagian['id'] ?>" <?= ($bagian['id'] == $pengiriman['bagian_dprd_id']) ? 'selected' : '' ?>><?= $bagian['nama_bagian'] ?></option>
+                                        <option value="<?= $bagian['id'] ?>" <?= ($bagian['id'] == $pengirimanUang['bagian_dprd_id']) ? 'selected' : '' ?>><?= $bagian['nama_bagian'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

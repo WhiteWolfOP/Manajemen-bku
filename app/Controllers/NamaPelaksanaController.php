@@ -19,6 +19,7 @@ class NamaPelaksanaController extends Controller
 
     public function create()
     {
+        $namaPelaksanaModel = new NamaPelaksanaModel();
         $bagianDprdModel = new BagianDprdModel();
         $bagianDprd = $bagianDprdModel->getBagianDPRD();
         $userModel = new UserModel();
@@ -49,7 +50,7 @@ class NamaPelaksanaController extends Controller
             return redirect()->to('/nama_pelaksana');
         }
 
-        return view('nama_pelaksana/create', ['usersWithUserRole' => $usersWithUserRole]);
+        return view('nama_pelaksana/create', ['usersWithUserRole' => $usersWithUserRole, 'bagianDprd' => $bagianDprd]);
     }
 
 
