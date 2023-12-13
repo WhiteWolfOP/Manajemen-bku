@@ -87,3 +87,11 @@ $routes->group('pengiriman_uang', ['namespace' => 'App\Controllers'], function (
 $routes->group('kas', ['namespace' => 'App\Controllers'], function ($routes) {
     $routes->get('/', 'KasController::index');
 });
+
+//rincian perdin
+$routes->group('rincian_perdin', ['namespace' => 'App\Controllers'], function ($routes) {
+    $routes->get('/', 'RincianPerdinController::index');
+    $routes->get('create', 'RincianPerdinController::create');
+    // Tambahkan route lain sesuai kebutuhan
+});
+

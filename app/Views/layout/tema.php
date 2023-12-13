@@ -261,6 +261,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?= site_url('rincian_perdin') ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kwitansi Biaya</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?= site_url('laporan') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Upload Laporan PERDIN</p>
