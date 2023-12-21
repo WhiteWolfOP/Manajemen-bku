@@ -200,6 +200,7 @@
                 Dashboard
               </p>
             </a>
+            <?php if (in_groups('admin')) : ?>
             <li class="nav-item">
             <a href="<?= site_url('bagian_dprd') ?>" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
@@ -239,6 +240,7 @@
               </li>
             </ul>
           </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
