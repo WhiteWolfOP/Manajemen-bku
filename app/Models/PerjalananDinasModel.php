@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Session\Session;
 
 class PerjalananDinasModel extends Model
 {
@@ -22,10 +23,13 @@ class PerjalananDinasModel extends Model
 
     public function getPerjalananDinasData()
     {
+        $session=\Config\Services::session();
+        // dd($session->get());
         return $this->db->table($this->table)
             ->select('perjalanan_dinas.*, nama_pelaksana.nama_pelaksana, bbm.provinsi, bbm.kota')
             ->join('nama_pelaksana', 'nama_pelaksana.id = perjalanan_dinas.pelaksana_id')
             ->join('bbm', 'bbm.id = perjalanan_dinas.bbm_id')
+            ->where('perjalanan_dinas.bagian_dprd_id', $session->get('bagian_id'))
             ->get()
             ->getResultArray();
     }

@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Upload Laporan</h1>
+            <h1>Upload Laporan dan Cetak Kwitansi</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -74,18 +74,6 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="kwitansi">Kwitansi:</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" name="kwitansi" class="custom-file-input" id="kwitansi">
-                        <label class="custom-file-label" for="kwitansi">Choose file</label>
-                    </div>
-                    <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                    </div>
-                </div>
-              </div>
-              <div class="form-group">
                 <label for="laporan_pdf">Laporan:</label>
                 <div class="input-group">
                     <div class="custom-file">
@@ -118,9 +106,8 @@
                 <label for="inputProjectLeader">Project Leader</label>
                 <input type="text" id="inputProjectLeader" class="form-control">
               </div> -->
-              <button type="submit" class="btn btn-primary">Simpan</button>
-              <a href="<?= site_url('laporan') ?>" class="btn btn-secondary">Cancel</a>
-            </form>
+              <!-- <button type="submit" class="btn btn-primary">Simpan</button>
+              <a href="<?= site_url('laporan') ?>" class="btn btn-secondary">Cancel</a> -->
             </div>
             <!-- /.card-body -->
           </div>
@@ -129,7 +116,7 @@
         <div class="col-md-6">
           <div class="card card-secondary">
             <div class="card-header">
-              <h3 class="card-title">Budget</h3>
+              <h3 class="card-title">Kwitansi</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -159,7 +146,7 @@
       <div class="row">
         <div class="col-12">
           <a href="<?= site_url('laporan') ?>" class="btn btn-secondary">Cancel</a>
-          <input type="submit" value="Create new Project" class="btn btn-success float-right">
+          <button type="submit" class="btn btn-success float-right">Simpan</button>
         </div>
       </div>
   </form>

@@ -20,15 +20,11 @@
 <section class="content">
       <div class="container-fluid">
             <div class="card">
-              <div class="card-header">
-                <a href="<?= site_url('laporan/create') ?>" class="btn btn-block btn-primary btn-sm">Tambah Data</a>
-              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example2" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>ID PERDIN</th>
                     <th>SP</th>
                     <th>SPPD</th>
                     <th>LP</th>
@@ -41,9 +37,6 @@
                   <?php foreach ($laporans as $laporan) : ?>
             <tbody>
                   <tr>
-                    <td>
-                      <?= $laporan['perdin_id'] ?>
-                    </td>
                     <td>
                     <form action="<?= site_url('public/uploads/sp/') ?>" method="post" enctype="multipart/form-data">
                       <button type="button" class="btn btn-primary btn-block"><i class="fa fa-file"></i><?= $laporan['sp'] ?></button>
